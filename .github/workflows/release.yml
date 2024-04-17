@@ -49,36 +49,36 @@ jobs:
           GIT_USER_NAME: eclipse-zenoh-bot
           GIT_USER_EMAIL: eclipse-zenoh-bot@users.noreply.github.com
 
-  build-macos:
-    needs: tag
-    runs-on: macos-latest
-    steps:
-      - name: Checkout this repository
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ needs.tag.outputs.branch }}
+  # build-macos:
+  #   needs: tag
+  #   runs-on: macos-latest
+  #   steps:
+  #     - name: Checkout this repository
+  #       uses: actions/checkout@v4
+  #       with:
+  #         ref: ${{ needs.tag.outputs.branch }}
 
-      - name: Install Rust toolchain
-        run: |
-          rustup set profile minimal
-          rustup show
+  #     - name: Install Rust toolchain
+  #       run: |
+  #         rustup set profile minimal
+  #         rustup show
 
-      - name: Build wheels - x86_64
-        uses: messense/maturin-action@v1
-        with:
-          target: x86_64
-          args: --release --out dist --sdist # Note: this step builds also the sources distrib
+  #     - name: Build wheels - x86_64
+  #       uses: messense/maturin-action@v1
+  #       with:
+  #         target: x86_64
+  #         args: --release --out dist --sdist # Note: this step builds also the sources distrib
 
-      - name: Build wheels - universal2
-        uses: messense/maturin-action@v1
-        with:
-          args: --release --universal2 --out dist
+  #     - name: Build wheels - universal2
+  #       uses: messense/maturin-action@v1
+  #       with:
+  #         args: --release --universal2 --out dist
 
-      - name: Upload wheels
-        uses: actions/upload-artifact@v3
-        with:
-          name: wheels
-          path: dist
+  #     - name: Upload wheels
+  #       uses: actions/upload-artifact@v3
+  #       with:
+  #         name: wheels
+  #         path: dist
 
   build-windows:
     needs: tag
@@ -197,10 +197,9 @@ jobs:
           path: dist
 
   publish-pypi:
-    needs:
-      [
+    needs: [
         tag,
-        build-macos,
+        # build-macos,
         build-windows,
         build-linux,
         build-linux-armv6,
@@ -224,10 +223,9 @@ jobs:
           password: ${{ secrets.PYPI_ORG_TOKEN }}
 
   publish-github:
-    needs:
-      [
+    needs: [
         tag,
-        build-macos,
+        # build-macos,
         build-windows,
         build-linux,
         build-linux-armv6,

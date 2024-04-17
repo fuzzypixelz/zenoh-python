@@ -1,52 +1,49 @@
-#
-#
-# Copyright (c) 2022 ZettaScale Technology
-#
-# This program and the accompanying materials are made available under the
-# terms of the Eclipse Public License 2.0 which is available at
-# http://www.eclipse.org/legal/epl-2.0, or the Apache License, Version 2.0
-# which is available at https://www.apache.org/licenses/LICENSE-2.0.
-#
-# SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
-#
-# Contributors:
-#   ZettaScale Zenoh Team, <zenoh@zettascale.tech>
-#
-#
 [package]
 name = "zenoh-python"
-version = "0.11.0-dev"
-authors = [
-    "kydos <angelo@icorsaro.net>",
-    "Julien Enoch <julien@enoch.fr>",
-    "Olivier Hécart <olivier.hecart@adlinktech.com>",
-    "Luca Cominardi <luca.cominardi@gmail.com>",
-    "Pierre Avital <pierre.avital@adlinktech.com>",
-]
+version = "0.11.0-dev-101-g1f4ec1a"
+authors = [ "kydos <angelo@icorsaro.net>", "Julien Enoch <julien@enoch.fr>", "Olivier Hécart <olivier.hecart@adlinktech.com>", "Luca Cominardi <luca.cominardi@gmail.com>", "Pierre Avital <pierre.avital@adlinktech.com>" ]
 edition = "2021"
 license = "EPL-2.0 OR Apache-2.0"
-categories = ["network-programming"]
+categories = [ "network-programming" ]
 description = "The Zenoh Python API"
 readme = "README.md"
 
 [lib]
 name = "zenoh"
-crate-type = ["cdylib"]
+crate-type = [ "cdylib" ]
 
 [features]
-complete_n = ["zenoh/complete_n"]
-default = ["zenoh/default"]
+complete_n = [ "zenoh/complete_n" ]
+default = [ "zenoh/default" ]
 
 [badges]
-maintenance = { status = "actively-developed" }
+[badges.maintenance]
+status = "actively-developed"
 
 [dependencies]
 env_logger = "0.11.3"
 flume = "0.11.0"
 json5 = "0.4.1"
-pyo3 = { version = "0.21.1", features = ["extension-module", "abi3-py37"] }
 uhlc = "0.6.0"
 validated_struct = "2.1.0"
-zenoh = { version = "0.11.0-dev", git = "https://github.com/eclipse-zenoh/zenoh.git", branch = "main", features = ["unstable"], default-features = false }
-zenoh-buffers = { version = "0.11.0-dev", git = "https://github.com/eclipse-zenoh/zenoh.git", branch = "main" }
-zenoh-core = { version = "0.11.0-dev", git = "https://github.com/eclipse-zenoh/zenoh.git", branch = "main" }
+
+[dependencies.pyo3]
+version = "0.21.1"
+features = [ "extension-module", "abi3-py37" ]
+
+[dependencies.zenoh]
+version = "0.11.0-dev"
+git = "https://github.com/eclipse-zenoh/zenoh.git"
+branch = "main"
+features = [ "unstable" ]
+default-features = false
+
+[dependencies.zenoh-buffers]
+version = "0.11.0-dev"
+git = "https://github.com/eclipse-zenoh/zenoh.git"
+branch = "main"
+
+[dependencies.zenoh-core]
+version = "0.11.0-dev"
+git = "https://github.com/eclipse-zenoh/zenoh.git"
+branch = "main"
